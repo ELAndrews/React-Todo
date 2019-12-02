@@ -1,6 +1,5 @@
 import React from "react";
-import Todo from "./components/TodoComponents/Todo";
-import ToDoForm from "./components/TodoComponents/TodoForm";
+import ToDoList from "./components/TodoComponents/TodoList";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -50,15 +49,12 @@ class App extends React.Component {
 
   onClear = e => {
     e.preventDefault();
-    this.setState(state => {
-      const toDoArray = state.toDoArray.filter(curr => {
-        if (curr.completed === false) {
-          state.toDoArray.push(curr);
-        }
-      });
-      return toDoArray;
+    const newArray = this.state.toDoArray.filter(
+      curr => curr.completed === false
+    );
+    this.setState({
+      toDoArray: newArray
     });
-    console.log(`event happened`);
   };
 
   onComplete = e => {};
@@ -69,13 +65,13 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <ToDoForm
+        <ToDoList
           onChange={this.onChange}
           onSubmit={this.onSubmit}
           onClear={this.onClear}
+          onComplete={this.onComplete}
+          state={this.state}
         />
-        <Todo />
-        {this.toDoArray}
       </div>
     );
   }

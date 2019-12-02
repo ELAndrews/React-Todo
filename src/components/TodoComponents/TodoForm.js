@@ -12,7 +12,9 @@ export default class ToDoForm extends React.Component {
           <button type="submit" onClick={this.props.onSubmit}>
             Add Task
           </button>
-          <button onClick={this.props.onClear}>Clear Completed Tasks</button>
+          <button type="submit" onClick={this.props.onClear}>
+            Clear Completed Tasks
+          </button>
         </form>
       </div>
     );
