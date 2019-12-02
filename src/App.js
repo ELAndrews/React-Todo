@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       toDoArray: [
         {
-          task: "",
+          task: "This is a task.",
           id: Date.now(),
           completed: false
         }
@@ -25,14 +25,45 @@ class App extends React.Component {
     };
   }
 
-  onSubmit = e => {};
+  onChange = e => {
+    this.setState({
+      formValues: {
+        ...this.state.formValues,
+        task: e.target.value
+      }
+    });
+  };
+
+  onSubmit = e => {
+    this.setState({
+      formValues: {
+        ...this.state.formValues
+      }
+    });
+    this.setState({
+      toDoArray: {
+        ...this.state.toDoArray
+      }
+    });
+  };
+
+  onClear = e => {};
+
+  onComplete = e => {};
 
   render() {
+    console.log(`formValues: `, this.state.formValues);
+    console.log(`toDoArray: `, this.state.toDoArray);
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        {/* <ToDoForm />
-        <Todo /> */}
+        <ToDoForm
+          onChange={this.onChange}
+          onSubmit={this.onSubmit}
+          onClear={this.onClear}
+        />
+        <Todo />
+        {this.toDoArray}
       </div>
     );
   }
