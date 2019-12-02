@@ -15,6 +15,11 @@ class App extends React.Component {
           task: "This is a task.",
           id: Date.now(),
           completed: false
+        },
+        {
+          task: "This is the second task.",
+          id: Date.now(),
+          completed: true
         }
       ],
       formValues: {
@@ -35,19 +40,26 @@ class App extends React.Component {
   };
 
   onSubmit = e => {
-    this.setState({
-      formValues: {
-        ...this.state.formValues
-      }
-    });
-    this.setState({
-      toDoArray: {
-        ...this.state.toDoArray
-      }
+    e.preventDefault();
+    this.setState(state => {
+      const toDoArray = state.toDoArray.push(state.formValues);
+
+      return toDoArray;
     });
   };
 
-  onClear = e => {};
+  onClear = e => {
+    e.preventDefault();
+    this.setState(state => {
+      const toDoArray = state.toDoArray.filter(curr => {
+        if (curr.completed === false) {
+          state.toDoArray.push(curr);
+        }
+      });
+      return toDoArray;
+    });
+    console.log(`event happened`);
+  };
 
   onComplete = e => {};
 
