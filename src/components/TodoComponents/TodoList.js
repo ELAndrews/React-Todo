@@ -14,6 +14,7 @@ export default class ToDoList extends React.Component {
           onChange={this.props.onChange}
           onSubmit={this.props.onSubmit}
           onClear={this.props.onClear}
+          state={this.props.state}
         />
         <SearchToDo
           state={this.props.state}

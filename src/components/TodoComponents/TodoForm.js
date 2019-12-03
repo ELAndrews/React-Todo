@@ -7,7 +7,13 @@ export default class ToDoForm extends React.Component {
         <form>
           <label>
             Task
-            <input type="text" name="task" onChange={this.props.onChange} />
+            <input
+              type="text"
+              name="task"
+              onChange={this.props.onChange}
+              placeholder="...new task"
+              value={this.props.state.formValues.task}
+            />
           </label>
           <button type="submit" onClick={this.props.onSubmit}>
             Add Task

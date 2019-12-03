@@ -44,6 +44,12 @@ class App extends React.Component {
       const toDoArray = state.toDoArray.push(state.formValues);
       return toDoArray;
     });
+    this.setState({
+      formValues: {
+        ...this.state.formValues,
+        task: ""
+      }
+    });
   };
 
   onClear = e => {
