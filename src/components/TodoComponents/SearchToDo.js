@@ -8,13 +8,11 @@ export default class SearchToDo extends React.Component {
     this.state = {
       searchFormValues: {
         task: ""
-      },
-      searchArray: []
+      }
     };
   }
 
   onSearchChange = e => {
-    // const { name, value } = e.target;
     this.setState({
       searchFormValues: {
         ...this.state.searchFormValues,
@@ -22,20 +20,6 @@ export default class SearchToDo extends React.Component {
       }
     });
     console.log(e.target.value);
-  };
-
-  onSearchSubmit = e => {
-    e.preventDefault();
-    // const searchArr =
-    //   this.state.searchFormValues.task &&
-    //   this.props.state.toDoArray.filter(curr => {
-    //     return curr.task.includes(this.state.searchFormValues.task);
-    //   });
-    // this.setState({
-    //   searchArray: searchArr
-    // });
-    // console.log(searchArr);
-    // console.log(this.props.state.toDoArray);
   };
 
   render() {
