@@ -11,14 +11,14 @@ class App extends React.Component {
     this.state = {
       toDoArray: [
         {
-          task: "This is a task.",
+          task: "Complete Todo App.",
           id: Date.now(),
           completed: false
         },
         {
-          task: "This is the second task.",
+          task: "Revise Advance React.",
           id: Date.now(),
-          completed: true
+          completed: false
         }
       ],
       formValues: {
@@ -42,7 +42,6 @@ class App extends React.Component {
     e.preventDefault();
     this.setState(state => {
       const toDoArray = state.toDoArray.push(state.formValues);
-
       return toDoArray;
     });
   };
@@ -57,11 +56,20 @@ class App extends React.Component {
     });
   };
 
-  onComplete = e => {};
+  onComplete = task => {
+    this.setState(prevState => ({
+      toDoArray: [
+        ...prevState.toDoArray.map((curr, index) => {
+          if (curr.id === task.id) {
+            task.completed = true;
+          }
+          return curr;
+        })
+      ]
+    }));
+  };
 
   render() {
-    console.log(`formValues: `, this.state.formValues);
-    console.log(`toDoArray: `, this.state.toDoArray);
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>

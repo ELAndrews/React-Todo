@@ -4,10 +4,10 @@
 import React from "react";
 import Todo from "./Todo";
 import ToDoForm from "./TodoForm";
+import SearchToDo from "./SearchToDo";
 
 export default class ToDoList extends React.Component {
   render() {
-    console.log(this);
     return (
       <div>
         <ToDoForm
@@ -15,10 +15,19 @@ export default class ToDoList extends React.Component {
           onSubmit={this.props.onSubmit}
           onClear={this.props.onClear}
         />
+        <SearchToDo
+          state={this.props.state}
+          onComplete={this.props.onComplete}
+        />
         {this.props.state.toDoArray.map((curr, index) => {
           return (
             <div key={index}>
-              <Todo curr={curr} />
+              <Todo
+                curr={curr}
+                key={curr.id}
+                complete={curr.completed}
+                onComplete={this.props.onComplete}
+              />
             </div>
           );
         })}
