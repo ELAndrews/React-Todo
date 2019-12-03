@@ -42,12 +42,15 @@ export default class SearchToDo extends React.Component {
     return (
       <div>
         <form>
-          <input type="text" name="search" onChange={this.onSearchChange} />
-          <button type="submit" onClick={this.onSearchSubmit}>
-            Search
-          </button>
+          <label>
+            Search:
+            <input type="text" name="search" onChange={this.onSearchChange} />
+          </label>
         </form>
-        {this.state.searchFormValues &&
+        {this.state.searchFormValues.task.length === 0 ? (
+          <div></div>
+        ) : (
+          this.state.searchFormValues &&
           this.props.state.toDoArray
             .filter(curr => {
               return curr.task
@@ -65,7 +68,8 @@ export default class SearchToDo extends React.Component {
                   />
                 </div>
               );
-            })}
+            })
+        )}
       </div>
     );
   }
